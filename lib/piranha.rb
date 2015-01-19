@@ -2,9 +2,11 @@ require 'active_support'
 
 require "piranha/version"
 require "piranha/configuration"
+require "piranha/checker"
 require "piranha/converter"
 require "piranha/merger"
 require "piranha/filler"
+
 
 
 module Piranha
