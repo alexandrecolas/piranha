@@ -1,31 +1,5 @@
 # Piranha
 
-TODO: Write a gem description
+Tools for convert, merge or fill Pdf, with wkhtmltopdf, pdftk and libreoffice.
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'piranha'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install piranha
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/piranha/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Don't use this gem in production, still in development.
