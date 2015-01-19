@@ -10,6 +10,7 @@ module Piranha
         libreoffice: "libreoffice"
       }
     end
+
   end
 
   class << self

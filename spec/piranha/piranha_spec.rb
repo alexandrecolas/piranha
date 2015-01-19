@@ -14,5 +14,4 @@ describe Piranha do
     expect(Piranha.configuration.executables[:pdftk]).to eq "pdftk"
     expect(Piranha.configuration.executables[:libreoffice]).to eq "libreoffice"
   end
-
 end
