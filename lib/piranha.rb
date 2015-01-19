@@ -15,4 +15,8 @@ module Piranha
     Piranha::Merger.perform(inputs, output)
   end
 
+  def self.fill(template, output, datas)
+    Piranha::Filler.perform(template, output, datas)
+  end
+
 end
