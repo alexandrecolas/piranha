@@ -26,7 +26,6 @@ module Piranha
   end
 
   def self.split(template, output, page)
-    binding.pry
     Piranha::Splitter.perform(template, output, page)
   end
 

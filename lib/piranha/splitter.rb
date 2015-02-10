@@ -9,7 +9,7 @@ module Piranha
       pdftk = ::PdfForms.new(executable)
       output = pdftk.cat(template, "cat", page.to_s, output)
 
-      raise output if "Error".include?(output)
+      raise output if output.include?("Error")
     end
 
   end
