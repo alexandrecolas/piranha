@@ -6,6 +6,8 @@ require "piranha/checker"
 require "piranha/converter"
 require "piranha/merger"
 require "piranha/filler"
+require "piranha/splitter"
+require "piranha/stamp"
 
 
 
