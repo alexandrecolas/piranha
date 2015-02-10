@@ -7,9 +7,9 @@ module Piranha
       executable = Piranha.configuration.executables[:pdftk]
 
       pdftk = ::PdfForms.new(executable)
-      output = pdftk.cat(template, "stamp", stamp, output)
+      result = pdftk.cat(template, "stamp", stamp, output)
 
-      raise output if output.include?("Error")
+      raise result.include?("Error")
     end
 
   end
