@@ -7,7 +7,7 @@ module Piranha
       executable = Piranha.configuration.executables[:pdftk]
 
       pdftk = ::PdfForms.new(executable, utf8_fields: true, data_format: 'XFdf')
-      pdftk.fill_form(template, output, datas)
+      pdftk.fill_form(template, output, datas, flatten: true)
     end
 
   end
