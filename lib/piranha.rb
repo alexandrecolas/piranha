@@ -23,4 +23,12 @@ module Piranha
     Piranha::Filler.perform(template, output, datas)
   end
 
+  def self.split(template, output, page)
+    Piranha::Splitter.perform(template, output, page)
+  end
+
+  def self.stamp(template, output, stamp)
+    Piranha::Stamp.perform(template, output, stamp)
+  end
+
 end
