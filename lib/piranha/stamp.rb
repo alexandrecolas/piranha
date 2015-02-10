@@ -1,5 +1,5 @@
 module Piranha
-  module Splitter
+  module Stamp
 
     require 'pdf-forms'
 
