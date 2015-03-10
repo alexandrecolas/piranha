@@ -1,12 +1,24 @@
+require 'pdf-forms'
+
 module Piranha
   module Merger
 
-    require 'pdf-forms'
+    def self.perform(files)
+      output = Piranha::Tempfile.generate_name
+      inputs = files.map(&:path)
 
-    def self.perform(inputs, output)
-      executable = Piranha.configuration.executables[:pdftk]
+      begin
+        self.convert(inputs, output)
+        file = File.open(output, "r")
+        return Piranha::Response.new(status: "success", file: file)
+      rescue Exception => e
+        return Piranha::Response.new(status: "error", error: e.message)
+      end
+    end
 
-      pdftk = ::PdfForms.new(executable)
+
+    def self.convert(inputs, output)
+      pdftk = ::PdfForms.new Piranha.configuration.executables[:pdftk]
       pdftk.cat(inputs, output)
     end
 

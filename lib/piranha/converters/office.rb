@@ -14,8 +14,6 @@ module Piranha
         else
           ::Libreconv.convert(input, output)
         end
-
-        return File.open(output)
       end
 
     end

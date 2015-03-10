@@ -23,7 +23,6 @@ module Piranha
         Piranha::Converters::Html.perform(input, output)
       end
 
-
     end
 
   end

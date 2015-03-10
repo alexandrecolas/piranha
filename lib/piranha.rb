@@ -17,8 +17,8 @@ module Piranha
     Piranha::Converter.perform(file)
   end
 
-  def self.merge(inputs, output)
-    Piranha::Merger.perform(inputs, output)
+  def self.merge(files)
+    Piranha::Merger.perform(files)
   end
 
   def self.fill(template, output, datas)

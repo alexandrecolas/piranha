@@ -5,7 +5,8 @@ module Piranha
 
       def perform(input, output)
         begin
-          file = self.convert(input, output)
+          self.convert(input, output)
+          file = File.open(output, "r")
           return Piranha::Response.new(status: "success", file: file)
         rescue Exception => e
           return Piranha::Response.new(status: "error", error: e.message)

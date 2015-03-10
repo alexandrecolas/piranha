@@ -1,17 +1,23 @@
 require 'spec_helper.rb'
 
-shared_examples "a Converter module" do
+describe Piranha::Merger do
+  subject { Piranha::Merger }
 
   context "#perform" do
-    let(:input) { Tempfile.new('input') }
-    let(:output) { Piranha::Tempfile.generate_name }
+    let(:files) { (1..3).map { |i| Tempfile.new("input-#{i}") } }
 
     context "if no errors" do
       before do
+        allow(Piranha::Tempfile).to receive(:generate_name) do
+          "#{Piranha.configuration.temp_directory}/this_is_output"
+        end
+
         allow(subject).to receive(:convert) do
+          output = "#{Piranha.configuration.temp_directory}/this_is_output"
           File.open(output, "w") { |f| f.write("this a file") }
         end
-        @result = subject.perform(input, output)
+
+        @result = subject.perform(files)
       end
 
       it "have file" do
@@ -26,7 +32,7 @@ shared_examples "a Converter module" do
     context "if errors" do
       before do
         allow(subject).to receive(:convert) { raise "this is an error" }
-        @result = subject.perform(input, output)
+        @result = subject.perform(files)
       end
 
       it "have success to false" do
