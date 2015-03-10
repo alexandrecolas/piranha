@@ -1,10 +1,12 @@
+require 'wicked_pdf'
+require 'piranha/converters/converter'
+
 module Piranha
   module Converters
     module Html
+      extend Piranha::Converters::Converter
 
-      require 'wicked_pdf'
-
-      def self.perform(input, output)
+      def self.convert(input, output)
         pdf = ::WickedPdf.new.pdf_from_html_file(input)
         File.open(output, 'wb') { |file| file << pdf }
       end

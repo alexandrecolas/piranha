@@ -1,10 +1,12 @@
+require 'libreconv'
+require 'piranha/converters/converter'
+
 module Piranha
   module Converters
     module Office
+      extend Piranha::Converters::Converter
 
-      require 'libreconv'
-
-      def self.perform(input, output)
+      def self.convert(input, output)
         executable = Piranha.configuration.executables[:libreoffice]
 
         if executable
@@ -12,6 +14,8 @@ module Piranha
         else
           ::Libreconv.convert(input, output)
         end
+
+        return File.open(output)
       end
 
     end
