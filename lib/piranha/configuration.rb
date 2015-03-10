@@ -1,14 +1,18 @@
 module Piranha
 
   class Configuration
-    attr_accessor :executables
+    attr_accessor :executables, :temp_directory
 
     def initialize
+      # Init executable
       @executables = {
         wkhtmltopdf: "/usr/local/bin/wkhtmltopdf",
         pdftk: "pdftk",
         libreoffice: nil
       }
+
+      # Init temp directory
+      @temp_directory = Dir.mktmpdir("pyranha_gem")
     end
 
   end
@@ -24,6 +28,10 @@ module Piranha
 
     def configure
       yield configuration
+
+      # wkhtmltopdf
+      executable = Piranha.configuration.executables[:wkhtmltopdf]
+      ::WickedPdf.config = { exe_path: executable }
     end
   end
 

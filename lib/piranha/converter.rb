@@ -7,7 +7,10 @@ module Piranha
 
   module Converter
 
-    def self.perform(input, output)
+    def self.perform(file)
+      output = Piranha::Tempfile.generate_name
+      input = file.path
+
       case Piranha::MimeTypes.get(input)
 
       when *Piranha::MimeTypes::IMAGES_MIME_TYPE
@@ -18,8 +21,9 @@ module Piranha
 
       when "text/html"
         Piranha::Converters::Html.perform(input, output)
-
       end
+
+
     end
 
   end

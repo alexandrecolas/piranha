@@ -8,13 +8,13 @@ require "piranha/merger"
 require "piranha/filler"
 require "piranha/splitter"
 require "piranha/stamp"
-
-
+require "piranha/tempfile"
+require "piranha/response"
 
 module Piranha
 
-  def self.convert(input, output)
-    Piranha::Converter.perform(input, output)
+  def self.convert(file)
+    Piranha::Converter.perform(file)
   end
 
   def self.merge(inputs, output)
