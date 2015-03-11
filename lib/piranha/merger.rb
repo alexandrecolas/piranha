@@ -7,13 +7,8 @@ module Piranha
       output = Piranha::Tempfile.generate_name
       inputs = files.map(&:path)
 
-      begin
-        self.convert(inputs, output)
-        file = File.open(output, "r")
-        return Piranha::Response.new(status: "success", file: file)
-      rescue Exception => e
-        return Piranha::Response.new(status: "error", error: e.message)
-      end
+      self.convert(inputs, output)
+      return File.open(output, "r")
     end
 
 

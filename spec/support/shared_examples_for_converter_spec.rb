@@ -11,30 +11,22 @@ shared_examples "a Converter module" do
         allow(subject).to receive(:convert) do
           File.open(output, "w") { |f| f.write("this a file") }
         end
-        @result = subject.perform(input, output)
       end
 
       it "have file" do
-        expect(@result.file.class).to eq File
+        file = subject.perform(input, output)
+        expect(file.class).to eq File
       end
 
-      it "have success to true" do
-        expect(@result.success?).to eq true
-      end
     end
 
     context "if errors" do
       before do
         allow(subject).to receive(:convert) { raise "this is an error" }
-        @result = subject.perform(input, output)
-      end
-
-      it "have success to false" do
-        expect(@result.success?).to eq false
       end
 
       it "have error message" do
-        expect(@result.error).to eq "this is an error"
+        expect { subject.perform(input, output) }.to raise_error "this is an error"
       end
     end
 

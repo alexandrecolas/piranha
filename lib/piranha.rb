@@ -21,16 +21,16 @@ module Piranha
     Piranha::Merger.perform(files)
   end
 
-  def self.fill(template, output, datas)
-    Piranha::Filler.perform(template, output, datas)
+  def self.fill(template, datas)
+    Piranha::Filler.perform(template, datas)
   end
 
-  def self.split(template, output, page)
-    Piranha::Splitter.perform(template, output, page)
+  def self.split(file, pages)
+    Piranha::Splitter.perform(file, pages)
   end
 
-  def self.stamp(template, output, stamp)
-    Piranha::Stamp.perform(template, output, stamp)
+  def self.stamp(file, stamp)
+    Piranha::Stamp.perform(file, stamp)
   end
 
 end

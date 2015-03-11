@@ -16,31 +16,21 @@ describe Piranha::Merger do
           output = "#{Piranha.configuration.temp_directory}/this_is_output"
           File.open(output, "w") { |f| f.write("this a file") }
         end
-
-        @result = subject.perform(files)
       end
 
       it "have file" do
-        expect(@result.file.class).to eq File
+        expect(subject.perform(files).class).to eq File
       end
 
-      it "have success to true" do
-        expect(@result.success?).to eq true
-      end
     end
 
     context "if errors" do
       before do
         allow(subject).to receive(:convert) { raise "this is an error" }
-        @result = subject.perform(files)
-      end
-
-      it "have success to false" do
-        expect(@result.success?).to eq false
       end
 
       it "have error message" do
-        expect(@result.error).to eq "this is an error"
+        expect { subject.perform(files) }.to raise_error "this is an error"
       end
     end
 

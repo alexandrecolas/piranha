@@ -4,13 +4,8 @@ module Piranha
     module Converter
 
       def perform(input, output)
-        begin
-          self.convert(input, output)
-          file = File.open(output, "r")
-          return Piranha::Response.new(status: "success", file: file)
-        rescue Exception => e
-          return Piranha::Response.new(status: "error", error: e.message)
-        end
+        self.convert(input, output)
+        return File.open(output, "r")
       end
 
     end
