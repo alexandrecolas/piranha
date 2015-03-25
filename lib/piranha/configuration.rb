@@ -28,10 +28,6 @@ module Piranha
 
     def configure
       yield configuration
-
-      # wkhtmltopdf
-      executable = Piranha.configuration.executables[:wkhtmltopdf]
-      ::WickedPdf.config = { exe_path: executable }
     end
   end
 

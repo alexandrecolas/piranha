@@ -6,7 +6,7 @@ describe Piranha::Tempfile do
     allow(SecureRandom).to receive(:uuid) { "uuid" }
     allow(Piranha.configuration).to receive(:temp_directory) { "/tmp" }
 
-    expect(Piranha::Tempfile.generate_name).to eq "/tmp/uuid"
+    expect(Piranha::Tempfile.generate_name).to eq "/tmp/uuid.pdf"
   end
 
 end

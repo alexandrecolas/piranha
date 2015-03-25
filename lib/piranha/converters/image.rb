@@ -7,6 +7,9 @@ module Piranha
       extend Piranha::Converters::Converter
 
       def self.convert(input, output)
+        executable = Piranha.configuration.executables[:wkhtmltopdf]
+        ::WickedPdf.config = { exe_path: executable }
+
         html = "<center><img src='#{input}' /></center>"
         pdf = ::WickedPdf.new.pdf_from_string(html)
         File.open(output, 'wb') { |file| file << pdf }
