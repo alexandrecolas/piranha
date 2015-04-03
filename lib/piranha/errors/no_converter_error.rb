@@ -1,0 +1,2 @@
+class NoConverterError < StandardError
+end
