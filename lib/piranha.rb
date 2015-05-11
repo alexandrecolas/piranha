@@ -8,6 +8,7 @@ require "piranha/merger"
 require "piranha/filler"
 require "piranha/splitter"
 require "piranha/stamp"
+require "piranha/infos"
 require "piranha/tempfile"
 require "piranha/response"
 
@@ -33,4 +34,7 @@ module Piranha
     Piranha::Stamp.perform(file, stamp)
   end
 
+  def self.count(file)
+    Piranha::Infos.perform(file, 'count')
+  end
 end
