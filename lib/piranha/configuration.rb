@@ -6,7 +6,7 @@ module Piranha
     def initialize
       # Init executable
       @executables = {
-        wkhtmltopdf: "/usr/local/bin/wkhtmltopdf",
+        wkhtmltopdf: nil,
         pdftk: "pdftk",
         libreoffice: nil
       }
