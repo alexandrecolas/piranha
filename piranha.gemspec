@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "wicked_pdf", "~> 0.11.0"
   spec.add_runtime_dependency "libreconv", "~> 0.9.0"
   spec.add_runtime_dependency "pdf-forms", "~> 0.6.0"
+  spec.add_runtime_dependency "mime-types", ">= 1.16"
 end

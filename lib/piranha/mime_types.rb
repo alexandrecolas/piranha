@@ -1,6 +1,6 @@
-module Piranha
+require 'mime/types'
 
-  require 'active_support'
+module Piranha
 
   module MimeTypes
 
@@ -25,7 +25,7 @@ module Piranha
 
 
     def self.get(path)
-      return MIME::Types.type_for(path).first.try(&:content_type)
+      return ::MIME::Types.type_for(path).first.try(&:content_type)
     end
 
   end
