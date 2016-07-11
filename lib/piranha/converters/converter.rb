@@ -2,8 +2,8 @@
 module Piranha
   module Converters
     module Converter
-      def perform(input, output)
-        convert(input, output)
+      def perform(input, output, options)
+        convert(input, output, options)
         File.open(output, 'r')
       end
     end

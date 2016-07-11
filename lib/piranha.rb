@@ -14,8 +14,8 @@ require "piranha/response"
 
 module Piranha
 
-  def self.convert(file)
-    Piranha::Converter.perform(file)
+  def self.convert(file, options)
+    Piranha::Converter.perform(file, options)
   end
 
   def self.merge(files)

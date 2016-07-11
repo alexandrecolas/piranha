@@ -7,7 +7,7 @@ module Piranha
   require 'piranha/errors/no_converter_error'
 
   module Converter
-    def self.perform(file)
+    def self.perform(file, options)
       output = Piranha::Tempfile.generate_name
       input = file.path
 
@@ -18,7 +18,7 @@ module Piranha
       when *Piranha::MimeTypes::OFFICE_MIME_TYPES
         Piranha::Converters::Office.perform(input, output)
       when 'text/html'
-        Piranha::Converters::Html.perform(input, output)
+        Piranha::Converters::Html.perform(input, output, options)
       else
         fail NoConverterError, "no converter for #{mime} type"
       end
