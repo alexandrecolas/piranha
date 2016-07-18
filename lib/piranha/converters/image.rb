@@ -6,7 +6,7 @@ module Piranha
     module Image
       extend Piranha::Converters::Converter
 
-      def self.convert(input, output)
+      def self.convert(input, output, options)
         executable = Piranha.configuration.executables[:wkhtmltopdf]
         ::WickedPdf.config = { exe_path: executable }
 

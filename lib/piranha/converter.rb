@@ -7,16 +7,16 @@ module Piranha
   require 'piranha/errors/no_converter_error'
 
   module Converter
-    def self.perform(file, options)
+    def self.perform(file, options = {})
       output = Piranha::Tempfile.generate_name
       input = file.path
 
       mime = Piranha::MimeTypes.get(input)
       case mime
       when *Piranha::MimeTypes::IMAGES_MIME_TYPE
-        Piranha::Converters::Image.perform(input, output)
+        Piranha::Converters::Image.perform(input, output, options)
       when *Piranha::MimeTypes::OFFICE_MIME_TYPES
-        Piranha::Converters::Office.perform(input, output)
+        Piranha::Converters::Office.perform(input, output, options)
       when 'text/html'
         Piranha::Converters::Html.perform(input, output, options)
       else
