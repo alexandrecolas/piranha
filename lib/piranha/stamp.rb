@@ -32,7 +32,7 @@ module Piranha
         page_to_stamp_path = input.gsub(".pdf", "_page_to_stamp.pdf")
         stamped_file_path = input.gsub(".pdf", "stamped.pdf")
 
-        result += pdftk.cat(input, "cat", page, page_to_stamp_path)
+        result += pdftk.cat(input, "cat", page.to_s, page_to_stamp_path)
         result += pdftk.cat(page_to_stamp_path, "stamp", input_stamp, stamped_file_path)
 
         stamped_handler = "A=#{stamped_file_path}"
@@ -48,14 +48,14 @@ module Piranha
           result += pdftk.cat(stamped_handler,
                              input_handler,
                              "cat",
-                             "B1-#{page}",
+                             "B1-#{page - 1}",
                              "A",
                              "B#{page + 1}-end",
                              output)
         end
       end
-      raise Exception.new(result) if result.include?("Error")
       File.delete(file_to_stamp_path, page_to_stamp_path, stamped_file_path)
+      raise Exception.new(result) if result.include?("Error")
     end
   end
 end
