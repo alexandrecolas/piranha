@@ -3,12 +3,12 @@ require 'pdf-forms'
 module Piranha
   module Stamp
 
-    def self.perform(file, stamp)
+    def self.perform(file, stamp, page)
       input = file.path
       input_stamp = stamp.path
       output = Piranha::Tempfile.generate_name
 
-      self.stamp(input, input_stamp, output)
+      self.stamp(input, input_stamp, output, page)
       return File.open(output, "r")
     end
 
@@ -20,7 +20,7 @@ module Piranha
     # @param [<type>] output generated output file path
     # @param [<type>] page Page to stamp < 1 means all pages
     #
-    def self.stamp(input, input_stamp, output, page = 0)
+    def self.stamp(input, input_stamp, output, page)
       executable = Piranha.configuration.executables[:pdftk]
       pdftk = ::PdfForms.new(executable)
 

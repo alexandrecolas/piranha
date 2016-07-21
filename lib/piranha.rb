@@ -30,8 +30,8 @@ module Piranha
     Piranha::Splitter.perform(file, pages)
   end
 
-  def self.stamp(file, stamp)
-    Piranha::Stamp.perform(file, stamp)
+  def self.stamp(file, stamp, page = 0)
+    Piranha::Stamp.perform(file, stamp, page)
   end
 
   def self.count(file)
