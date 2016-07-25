@@ -1,40 +1,51 @@
 require 'active_support'
 
-require "piranha/version"
-require "piranha/configuration"
-require "piranha/checker"
-require "piranha/converter"
-require "piranha/merger"
-require "piranha/filler"
-require "piranha/splitter"
-require "piranha/stamp"
-require "piranha/infos"
-require "piranha/tempfile"
-require "piranha/response"
+require 'piranha/version'
+require 'piranha/configuration'
+require 'piranha/checker'
+require 'piranha/actions/converter'
+require 'piranha/actions/merger'
+require 'piranha/actions/filler'
+require 'piranha/actions/getter'
+require 'piranha/actions/splitter'
+require 'piranha/actions/stamp'
+require 'piranha/actions/infos'
+require 'piranha/tempfile'
+require 'piranha/response'
 
 module Piranha
 
+  # Actions
   def self.convert(file, options)
-    Piranha::Converter.perform(file, options)
+    Piranha::Actions::Converter.perform(file, options)
   end
 
   def self.merge(files)
-    Piranha::Merger.perform(files)
+    Piranha::Actions::Merger.perform(files)
   end
 
   def self.fill(template, datas)
-    Piranha::Filler.perform(template, datas)
+    Piranha::Actions::Filler.perform(template, datas)
   end
 
   def self.split(file, pages)
-    Piranha::Splitter.perform(file, pages)
+    Piranha::Actions::Splitter.perform(file, pages)
+  end
+
+  def self.get(file, pages)
+    Piranha::Actions::Getter.perform(file, pages)
   end
 
   def self.stamp(file, stamp)
-    Piranha::Stamp.perform(file, stamp)
+    Piranha::Actions::Stamp.perform(file, stamp)
   end
 
   def self.count(file)
-    Piranha::Infos.perform(file, 'count')
+    Piranha::Actions::Infos.perform(file, 'count')
+  end
+
+  # Root
+  def self.root
+    File.expand_path('../..', __FILE__)
   end
 end

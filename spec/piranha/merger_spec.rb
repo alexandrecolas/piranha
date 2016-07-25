@@ -1,12 +1,12 @@
 require 'spec_helper.rb'
 
-describe Piranha::Merger do
-  subject { Piranha::Merger }
+describe Piranha::Actions::Merger do
+  subject { Piranha::Actions::Merger }
 
-  context "#perform" do
+  context '#perform' do
     let(:files) { (1..3).map { |i| Tempfile.new("input-#{i}") } }
 
-    context "if no errors" do
+    context 'if no errors' do
       before do
         allow(Piranha::Tempfile).to receive(:generate_name) do
           "#{Piranha.configuration.temp_directory}/this_is_output"
@@ -14,26 +14,23 @@ describe Piranha::Merger do
 
         allow(subject).to receive(:convert) do
           output = "#{Piranha.configuration.temp_directory}/this_is_output"
-          File.open(output, "w") { |f| f.write("this a file") }
+          File.open(output, 'w') { |f| f.write('this a file') }
         end
       end
 
-      it "have file" do
-        expect(subject.perform(files).class).to eq File
+      it 'have file' do
+        expect(subject.perform(files)).to eq 'this a file'
       end
-
     end
 
-    context "if errors" do
+    context 'if errors' do
       before do
-        allow(subject).to receive(:convert) { raise "this is an error" }
+        allow(subject).to receive(:convert) { fail 'this is an error' }
       end
 
-      it "have error message" do
-        expect { subject.perform(files) }.to raise_error "this is an error"
+      it 'have error message' do
+        expect { subject.perform(files) }.to raise_error 'this is an error'
       end
     end
-
   end
-
 end
