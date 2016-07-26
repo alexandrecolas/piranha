@@ -9,12 +9,12 @@ module Piranha
       extend Piranha::Actions::Renderer
 
       def self.perform(file, pages)
-        pages.is_a? ? pages.map { |p| split(file, p) } : split(file, pages)
+        pages.is_a?(Array) ? pages.map { |p| get(file, p) } : get(file, pages)
       end
 
-      def self.split(file, page)
+      def self.get(file, page)
         output = generate_output_path
-        split(file.path, output, page)
+        execute(file.path, output, page)
         render output
       end
 
