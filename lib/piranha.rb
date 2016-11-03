@@ -16,7 +16,7 @@ require 'piranha/response'
 module Piranha
 
   # Actions
-  def self.convert(file, options)
+  def self.convert(file, options = {})
     Piranha::Actions::Converter.perform(file, options)
   end
 
