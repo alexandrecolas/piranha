@@ -1,7 +1,7 @@
 module Piranha
 
   class Configuration
-    attr_accessor :executables, :temp_directory
+    attr_accessor :executables, :temp_directory, :format
 
     def initialize
       # Init executable
@@ -10,6 +10,8 @@ module Piranha
         pdftk: "pdftk",
         libreoffice: nil
       }
+
+      @format = :tempfile
 
       # Init temp directory
       @temp_directory = Dir.mktmpdir("pyranha_gem")

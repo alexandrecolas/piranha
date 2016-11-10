@@ -10,17 +10,18 @@ module Piranha
         input = file.path
 
         if pages.kind_of?(Array)
-          pages.map do |page|
+          render pages.map do |page|
             output = Piranha::Tempfile.generate_name
-            execute(input, page)
+            execute(input, output, page)
           end
         else
           output = Piranha::Tempfile.generate_name
-          execute(input, page)
+          execute(input, output, pages)
+          render output
         end
       end
 
-      def self.split(input, ouput, page)
+      def self.execute(input, ouput, page)
         executable = Piranha.configuration.executables[:pdftk]
         pdftk = ::PdfForms.new(executable)
         result = pdftk.cat(input, 'cat', page.to_s, output)
