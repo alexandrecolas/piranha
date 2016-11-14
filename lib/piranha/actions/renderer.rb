@@ -13,18 +13,10 @@ module Piranha
 
       # Render
       def render(output)
-        if output.is_a? Array
-          output.each { |file| render_file(file) }
-        else
+        if output.is_a? String
           render_file(output)
-        end
-      ensure
-        if output.present?
-          if output.is_a? Array
-            output.each { |file| FileUtils.rm(file) }
-          else
-            FileUtils.rm(output)
-          end
+        else
+          output.map { |file| render_file(file) }
         end
       end
 
@@ -32,12 +24,12 @@ module Piranha
 
       # Render File
       # @private
-      def render_file(file)
+      def render_file(path)
+        file = File.open(path, 'r')
         if Piranha.configuration.format == :tempfile
           file
         else
-          contents = File.open(file, 'r') { |x| x.read }
-          Piranha::FilelessIO.new("#{SecureRandom.uuid}.pdf", contents)
+          Piranha::FilelessIO.new("#{SecureRandom.uuid}.pdf", file.read)
         end
       end
     end

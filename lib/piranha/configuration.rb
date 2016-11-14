@@ -7,14 +7,14 @@ module Piranha
       # Init executable
       @executables = {
         wkhtmltopdf: nil,
-        pdftk: "pdftk",
+        pdftk: 'pdftk',
         libreoffice: nil
       }
 
       @format = :tempfile
 
       # Init temp directory
-      @temp_directory = Dir.mktmpdir("pyranha_gem")
+      @temp_directory = Dir.mktmpdir('piranha_gem')
     end
 
   end
