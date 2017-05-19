@@ -62,9 +62,9 @@ module Piranha
         recombine_base_args = [replacement_handler, input_handler, "cat"]
 
         replace_args =  if (page == 1)
-                          ["A", "B2-end", "output"]
+                          ["A", "B2-end", output]
                         else
-                          ["B1-#{page - 1}", "A", "B#{page + 1}-end", "output"]
+                          ["B1-#{page - 1}", "A", "B#{page + 1}-end", output]
                         end
         result = pdftk.cat(recombine_base_args.concat(replace_args))
         raise Exception.new(result) if result.include?("Error")
