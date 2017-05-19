@@ -60,11 +60,18 @@ module Piranha
         input_handler = "B=#{input}"
 
         recombine_base_args = [replacement_handler, input_handler, "cat"]
+        page_count = Piranha::Actions::Infos.infos(input, "count")
 
         replace_args =  if (page == 1)
                           ["A", "B2-end", output]
                         else
-                          ["B1-#{page - 1}", "A", "B#{page + 1}-end", output]
+                          last_segment = (page == page_count) ? nil : "B#{page + 1}-end"
+                          [
+                            "B1-#{page - 1}",
+                            "A",
+                            last_segment,
+                            output
+                          ].compact
                         end
         result = pdftk.cat(recombine_base_args.concat(replace_args))
         raise Exception.new(result) if result.include?("Error")
