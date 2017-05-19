@@ -24,7 +24,7 @@ module Piranha
         executable = Piranha.configuration.executables[:pdftk]
         pdftk = ::PdfForms.new(executable)
 
-        if page < 1
+        if page < 1 || Piranha::Actions::Infos.infos(input, "count") == 1
           result = pdftk.cat(input, "stamp", input_stamp, output)
           raise Exception.new(result) if result.include?("Error")
           return
