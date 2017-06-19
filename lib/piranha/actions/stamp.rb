@@ -30,8 +30,8 @@ module Piranha
           return
         end
 
-        page_to_stamp_path = input.gsub(".pdf", "_page_to_stamp.pdf")
-        stamped_file_path = input.gsub(".pdf", "stamped.pdf")
+        page_to_stamp_path = input.gsub(/.pdf/i, "_page_to_stamp.pdf")
+        stamped_file_path = input.gsub(/.pdf/i, "stamped.pdf")
 
         #extract page to stamp
         Piranha::Actions::Splitter.execute(input, page_to_stamp_path, page)
